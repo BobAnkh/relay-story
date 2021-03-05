@@ -39,7 +39,7 @@ optional arguments:
 
 #### 文件内容
 
-故事采用markdown进行撰写，需在文中任意一些行以下述注释形式指出一下元数据:
+故事采用markdown进行撰写，需在文中任意一些行以下述注释形式指出以下元数据:
 
 - 上游编号(即被续接的故事的文件名): `<!--upstream: x.y-->`. 如`<!--upstream: 2.1-->`
 - 作者: `<!--author: YourName-->`. 如`<!--author: BobAnkh-->`
