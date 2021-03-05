@@ -67,7 +67,7 @@ def content_process(markdown_content, chapter_name, author, node):
         if re.match(r'#\s.*', line) and is_find == False:
             is_find = True
             lines[
-                i] = f'# {chapter_name}' + '\n\n' + f'> Author: {author}\n>\n> Node: {node}'
+                i] = f'## {chapter_name}' + '\n\n' + f'> Author: {author}\n>\n> Node: {node}'
         else:
             if re.match(r'#{1,6}\s.*', line):
                 lines[i] = '#' + line
@@ -75,7 +75,7 @@ def content_process(markdown_content, chapter_name, author, node):
     for elem in lines:
         result += elem + '\n'
     if is_find == False:
-        result = f'# {chapter_name}' + '\n\n' + f'> Author: {author}\n>\n> Node: {node}' + '\n\n' + result
+        result = f'## {chapter_name}' + '\n\n' + f'> Author: {author}\n>\n> Node: {node}' + '\n\n' + result
     re.sub(r'^\n*', '', re.sub(r'\n*$', '', result))
     return result
 
