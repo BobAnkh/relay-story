@@ -1,8 +1,13 @@
 # CHANGELOG
 
-## Unreleased
+## [v0.1.2](https://github.com/BobAnkh/relay-story/releases/tag/v0.1.2) - 2021-03-05 10:12:45
 
-Changes unreleased.
+Fix multiple newline problem
+
+### Bug Fixes
+
+- relaystory:
+  - resolve multiple newline ([1b59700](https://github.com/BobAnkh/relay-story/commit/1b59700096126bf22b4dd448fb4e12537ba337c0))
 
 ### Documentation
 
