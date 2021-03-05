@@ -1,11 +1,11 @@
-name: Generate changelog
+name: story
 on:
   push:
     branches:
       - "main"
 
 jobs:
-  generate-changelog:
+  generate-story:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
