@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [v0.1.3](https://github.com/BobAnkh/relay-story/releases/tag/v0.1.3) - 2021-03-05 10:19:04
+
+Fix content end with multiple newline.
+
+### Bug Fixes
+
+- relaystory:
+  - resolve content end with newline ([a025ec8](https://github.com/BobAnkh/relay-story/commit/a025ec8b6c46397efc9a6eaf2600ea66a1dfa14e))
+
 ## [v0.1.2](https://github.com/BobAnkh/relay-story/releases/tag/v0.1.2) - 2021-03-05 10:12:45
 
 Fix multiple newline problem
