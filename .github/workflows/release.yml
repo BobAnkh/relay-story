@@ -1,0 +1,27 @@
+name: release
+on:
+  release:
+    types: [created]
+
+jobs:
+  release-to-pypi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Setup and Upload
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U setuptools wheel twine
+          python setup.py upload
+      - name: Upload release binaries
+        uses: alexellis/upload-assets@0.2.2
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        with:
+          asset_paths: '["dist/*"]'
