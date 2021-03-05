@@ -1,0 +1,23 @@
+name: Generate changelog
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  generate-changelog:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Generate story
+      run: |
+        python -m pip install --upgrade pip
+        pip install relaystory
+        relaystory -i story -o output -f markdown
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: "docs(story): update story"
+        file_pattern: output/**/*
