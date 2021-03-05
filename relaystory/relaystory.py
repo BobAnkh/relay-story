@@ -76,7 +76,7 @@ def content_process(markdown_content, chapter_name, author, node):
         result += elem + '\n'
     if is_find == False:
         result = f'## {chapter_name}' + '\n\n' + f'> Author: {author}\n>\n> Node: {node}' + '\n\n' + result
-    re.sub(r'^\n*', '', re.sub(r'\n*$', '', result))
+    result = re.sub(r'^\n*', '', re.sub(r'\n*$', '', result))
     return result
 
 
