@@ -165,7 +165,7 @@ class RelayStory:
                 authors += elem + ', '
             authors = authors[:-2]
             book = f'# {self.roadmap[node]["book_name"]}' + '\n\n' + stream + '\n>\n' + authors + '\n\n' + content + '\n\n' + self.roadmap[
-                node]['content'] + '\n\n'
+                node]['content'] + '\n'
             with open(os.path.join(
                     self._output_folder, 'markdown',
                     self.roadmap[node]['book_name'] + '(' + node + ')' +
