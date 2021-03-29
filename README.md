@@ -8,6 +8,8 @@
 
 ## 使用说明
 
+目前支持生成为markdown格式的结果和纯html格式的结果，可以搭配自己的css或其他模板使用，后续计划支持自定义css和模板
+
 ### 安装说明
 
 使用`pip install relaystory`进行安装，使用方式如下：
@@ -22,7 +24,7 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         directory to output all the generated stories. Default to output.
   -f FORMAT [FORMAT ...], --format FORMAT [FORMAT ...]
-                        select the output format. Options: all, markdown, html, pdf. Default to markdown.
+                        select the output format. Options: all, markdown, html. Default to markdown.
 ```
 
 例如运行`relaystory -i story -o output -f markdown`命令，可将`story`文件夹下的按一定格式组织的文件组织成故事，并以**markdown**的格式输出在文件夹`output/markdown`下。

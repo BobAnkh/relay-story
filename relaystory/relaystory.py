@@ -14,6 +14,8 @@ import shutil
 import sys
 from operator import itemgetter
 
+import markdown
+
 
 def get_meta_data(markdown_content, filename):
     '''
@@ -110,7 +112,7 @@ def read_file(file_path, filename, content_process_func=content_process):
 
 
 class RelayStory:
-    def __init__(self, input, output, markdown, html, pdf):
+    def __init__(self, input, output, markdown, html):
         '''
         Init function of RelayStory
 
@@ -118,14 +120,12 @@ class RelayStory:
             input (str): input folder path
             output (str): output folder path
             markdown (bool): whether to generate markdown story
-            html (bool): whether to generate html story[Not implemented]
-            pdf (bool): whether to generate pdf story[Not implemented]
+            html (bool): whether to generate html story
         '''
         self._input_folder = input
         self._output_folder = output
         self._markdown = markdown
         self._html = html
-        self._pdf = pdf
         self._head = {}
         self.roadmap = {}
 
@@ -154,7 +154,8 @@ class RelayStory:
                 else:
                     sys.exit('Middle node without an upstream is not allowed!')
 
-    def _generate_markdown(self, node, content, streampath, author):
+    def _generate_output(self, node, content, streampath, author, rMarkdown,
+                         rHtml):
         if self.roadmap[node]['downstream'] == []:
             stream = '> RoadMap: '
             for elem in streampath:
@@ -166,43 +167,46 @@ class RelayStory:
             authors = authors[:-2]
             book = f'# {self.roadmap[node]["book_name"]}' + '\n\n' + stream + '\n>\n' + authors + '\n\n' + content + '\n\n' + self.roadmap[
                 node]['content'] + '\n'
-            with open(os.path.join(
-                    self._output_folder, 'markdown',
-                    self.roadmap[node]['book_name'] + '(' + node + ')' +
-                    '.md'),
-                      'w',
-                      encoding='utf-8') as f:
-                f.write(book)
+            if rMarkdown:
+                with open(os.path.join(
+                        self._output_folder, 'markdown',
+                        self.roadmap[node]['book_name'] + '(' + self._head +
+                        '-' + node + ')' + '.md'),
+                          'w',
+                          encoding='utf-8') as f:
+                    f.write(book)
+            if rHtml:
+                with open(os.path.join(
+                        self._output_folder, 'html',
+                        self.roadmap[node]['book_name'] + '(' + self._head +
+                        '-' + node + ')' + '.html'),
+                          'w',
+                          encoding='utf-8') as f:
+                    f.write(markdown.markdown(book))
         else:
             for child_node in self.roadmap[node]['downstream']:
                 if content == '':
-                    self._generate_markdown(
+                    self._generate_output(
                         child_node, self.roadmap[node]['content'],
                         streampath + [node],
-                        author + [self.roadmap[node]['author']])
+                        author + [self.roadmap[node]['author']], rMarkdown,
+                        rHtml)
                 else:
-                    self._generate_markdown(
+                    self._generate_output(
                         child_node,
                         content + '\n\n' + self.roadmap[node]['content'],
                         streampath + [node],
-                        author + [self.roadmap[node]['author']])
+                        author + [self.roadmap[node]['author']], rMarkdown,
+                        rHtml)
 
-    def markdown_story(self):
+    def write_story(self):
         if self._markdown:
             os.mkdir(os.path.join(self._output_folder, 'markdown'))
-            self._generate_markdown(self._head, '', [], [])
-        else:
-            pass
-
-    def html_story(self):
         if self._html:
-            raise NotImplementedError
-        else:
-            pass
-
-    def pdf_story(self):
-        if self._pdf:
-            raise NotImplementedError
+            os.mkdir(os.path.join(self._output_folder, 'html'))
+        if self._markdown or self._html:
+            self._generate_output(self._head, '', [], [], self._markdown,
+                                  self._html)
         else:
             pass
 
@@ -225,7 +229,7 @@ def argument_parser():
         "--format",
         nargs='+',
         help=
-        "select the output format. Options: all, markdown, html, pdf. Default to markdown.",
+        "select the output format. Options: all, markdown, html. Default to markdown.",
         default=['markdown'])
     args = parser.parse_args()
     return args
@@ -245,25 +249,19 @@ def main():
 
     generate_markdown = False
     generate_html = False
-    generate_pdf = False
     if 'all' in args.format:
         generate_markdown = True
         generate_html = True
-        generate_pdf = True
     else:
         if 'markdown' in args.format:
             generate_markdown = True
         if 'html' in args.format:
             generate_html = True
-        if 'pdf' in args.format:
-            generate_pdf = True
 
     relaystory = RelayStory(args.input, args.output, generate_markdown,
-                            generate_html, generate_pdf)
+                            generate_html)
     relaystory.read_raw_story()
-    relaystory.markdown_story()
-    relaystory.html_story()
-    relaystory.pdf_story()
+    relaystory.write_story()
 
 
 if __name__ == '__main__':

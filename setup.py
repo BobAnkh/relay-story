@@ -88,7 +88,7 @@ setup(name=NAME,
       include_package_data=False,
       zip_safe=False,
       platforms=["any"],
-      install_requires=[''],
+      install_requires=['markdown'],
       python_requires='>3',
       entry_points={
           'console_scripts': [
