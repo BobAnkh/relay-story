@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## [v0.2.0](https://github.com/BobAnkh/relay-story/releases/tag/v0.2.0) - 2021-03-29 05:52:57
+
+Add support for generating pure html files! 
+
+Will support for template or css in the future version.
+
+### Feature
+
+- html:
+  - add support for pure html ([fc222eb](https://github.com/BobAnkh/relay-story/commit/fc222eb31f24a80838d9498e36cb17f39f5b9e57))
+
+### Documentation
+
+- story:
+  - update story ([c4d7358](https://github.com/BobAnkh/relay-story/commit/c4d73586f03d8d1b6bf2a5829a3d70df8fe0399a))
+  - update story ([12f2cea](https://github.com/BobAnkh/relay-story/commit/12f2ceaeee852e98d693116c7395d1b95f88823b))
+  - update story ([035bc31](https://github.com/BobAnkh/relay-story/commit/035bc31cb4a0dfb755a176e0664cd1d0dcf9908c))
+  - add 4.1 ([4ac8ae0](https://github.com/BobAnkh/relay-story/commit/4ac8ae0749df05c2d9c254e5aa5d9e1f62df3be9)) ([#2](https://github.com/BobAnkh/relay-story/pull/2))
+  - add 3.1 ([95440ae](https://github.com/BobAnkh/relay-story/commit/95440ae4adeafd590e38a51555f685aac76b43a9)) ([#2](https://github.com/BobAnkh/relay-story/pull/2))
+  - update story ([e40eee0](https://github.com/BobAnkh/relay-story/commit/e40eee0a0783458be8465aebc2e9cbf599ae762a))
+  - add 1.1.md ([ff1ee9c](https://github.com/BobAnkh/relay-story/commit/ff1ee9c784db28ca49b2e6706dfab4bf26e877d2))
+  - add 2.1.md ([aee2a00](https://github.com/BobAnkh/relay-story/commit/aee2a00a20c3bd8ad62621632bc9e58c7a833170)) ([#1](https://github.com/BobAnkh/relay-story/pull/1))
+
+- output:
+  - add origin output ([87464a3](https://github.com/BobAnkh/relay-story/commit/87464a319b710a4cbd56c753a0a74e99a4e0469f))
+
 ## [v0.1.3](https://github.com/BobAnkh/relay-story/releases/tag/v0.1.3) - 2021-03-05 10:19:04
 
 Fix content end with multiple newline.
