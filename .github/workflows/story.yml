@@ -4,8 +4,8 @@ on:
     branches:
       - "main"
     paths:
-    - 'story/**'
-    - 'relaystory/**'
+      - 'story/**'
+      - 'relaystory/**'
 
 jobs:
   generate-story:
