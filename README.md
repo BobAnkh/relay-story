@@ -29,6 +29,8 @@ optional arguments:
 
 例如运行`relaystory -i story -o output -f markdown`命令，可将`story`文件夹下的按一定格式组织的文件组织成故事，并以**markdown**的格式输出在文件夹`output/markdown`下。
 
+例如运行`relaystory -i story -o output -f all`命令，可将`story`文件夹下的按一定格式组织的文件组织成故事，并以**markdown**的格式输出在文件夹`output/markdown`下，以**html**的格式输出在文件夹`output/html`下。
+
 具体可参见[本仓库](https://github.com/BobAnkh/relay-story)下`story`和`output`文件夹中的示例，也欢迎为此示例贡献。
 
 ### 文件规范
